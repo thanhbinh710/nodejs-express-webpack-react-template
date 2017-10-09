@@ -1,0 +1,14 @@
+.header {
+    padding: 85px 80px;
+    background: $color-deepcove;
+
+    .page_title {
+        font-size: 34px;
+        color: $color-geyser;
+        letter-spacing: 27.2px;
+
+        .emphasis {
+            color: $color-white;
+        }
+    }
+}
