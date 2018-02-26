@@ -9,8 +9,7 @@ export default class Header extends Component {
       <header className="header">
 
         <div className="page_title">
-            DESIGN SYSTEM
-            <span className="emphasis">UI KIT</span>
+            Sample Header
         </div>
       </header>
     );
