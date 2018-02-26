@@ -18,4 +18,4 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-app.listen(process.env.PORT || 7100, () => console.log('Listening to port 7000'));
+app.listen(process.env.PORT || 7000, () => console.log('Listening to port 7000'));
