@@ -24,11 +24,10 @@ app.use(bodyParser.json());
 
 
 // Server routes...
-// app.use(express.static(path.join(__dirname, 'dist')));
-// app.use('/node_modules', express.static(__dirname + '/node_modules'));
-
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/api', routes);
-// app.get('/hello', (req, res) => res.send({ hi: 'there' }));
+
 
 
 

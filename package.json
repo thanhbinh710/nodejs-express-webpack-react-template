@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "NODE_ENV=production npm run clean && webpack -p",
-    "serve": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "npm run clean && npm run build; node server.js"
   },
   "repository": "https://binh710@bitbucket.org/binh710/node-webpack-react-template.git",
   "author": "Binh Nguyen",
@@ -35,6 +36,7 @@
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "express": "^4.16.1",
+    "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.4",
     "nodemon": "^1.12.1",
     "react": "^16.0.0",

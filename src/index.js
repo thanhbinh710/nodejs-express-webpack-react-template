@@ -6,8 +6,8 @@ import { createStore } from "redux";
 import App from "./components/app";
 import reducers from "./reducers";
 
-import '../style/css/fonts.css';
-// import '../style/sass/main.scss';
+import '../public/style/css/fonts.css';
+import '../public/style/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
