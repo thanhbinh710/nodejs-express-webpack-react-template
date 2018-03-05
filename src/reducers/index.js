@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
-import BooksReducer from "./reducer_books";
-import ActiveBook from "./reducer_active_book";
+import { reducer as formReducer } from 'redux-form';
+import tokenReducer from "./reducer_token";
+import booksReducer from "./reducer_books";
+import activeBook from "./reducer_active_book";
 
 const rootReducer = combineReducers({
-  books: BooksReducer,
-  activeBook: ActiveBook
+	form: formReducer,
+	token: tokenReducer,
+  	books: booksReducer,
+  	activeBook: activeBook
 });
 
 export default rootReducer;

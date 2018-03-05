@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectBook } from "../../actions/index";
 import { bindActionCreators } from "redux";
+import { selectBook } from "../../actions/index";
 
 class BookList extends Component {
   renderList() {
@@ -20,8 +20,8 @@ class BookList extends Component {
 
   render() {
     return (
-      <div className="container">
-        <ul className="list-group col-sm-4">
+      <div className="col-4">
+        <ul className="list-group">
           {this.renderList()}
         </ul>
       </div>

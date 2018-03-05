@@ -2,6 +2,11 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
+const sourcePath = path.join(__dirname, './');
+const sourcePathNode_Module = path.join(__dirname, './node_modules');
+const sourcePathPublic = path.join(__dirname, './public/src');
+
 const VENDOR_LIBS = [
     'react', 'react-dom', 'react-router', 'react-router-dom', 'axios',
     'react-redux', 'redux', 'redux-form', 'redux-promise', 'lodash'
@@ -36,6 +41,15 @@ module.exports = {
                 loader: 'url-loader?limit=40000'
             }
         ]
+    },
+    devServer: { 
+        contentBase: './',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        },
+        historyApiFallback: true 
     },
     plugins: [
         new webpack.DefinePlugin({

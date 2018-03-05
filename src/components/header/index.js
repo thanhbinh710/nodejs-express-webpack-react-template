@@ -9,7 +9,7 @@ export default class Header extends Component {
       <header className="header">
 
         <div className="page_title">
-            Sample Header
+            Sample <span className="emphasis"> Header</span>
         </div>
       </header>
     );

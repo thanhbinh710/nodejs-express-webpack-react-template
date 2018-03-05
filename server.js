@@ -4,14 +4,22 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('./api/routes');
 
-
-
 if (process.env.NODE_ENV !== 'production') {
   const webpackMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
   const webpackConfig = require('./webpack.config.js');
   app.use(webpackMiddleware(webpack(webpackConfig)));
+
+
+  // allow CORS when we run npm run dev
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 } else {
+
   app.use(express.static('dist'));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
