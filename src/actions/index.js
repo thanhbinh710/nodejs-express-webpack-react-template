@@ -2,7 +2,9 @@ export const CHANGE_AUTH = 'change_auth';
 export const BOOK_SELECTED = 'book_selected';
 
 
-export function authenticate(token) {  			
+export function authenticate(token) {
+    // set token to local storage
+
   	return {
     	type: CHANGE_AUTH,
     	payload: token
