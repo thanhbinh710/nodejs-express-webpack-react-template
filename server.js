@@ -1,13 +1,14 @@
 const express = require('express');
-const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('./api/routes');
+const compression = require('compression')
 
+const app = express();
 
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 if (process.env.NODE_ENV !== 'production') {
     const webpackMiddleware = require('webpack-dev-middleware');
@@ -29,15 +30,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-
-
-
-// Server routes...
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/api', routes);
-
-
 
 
 app.listen(process.env.PORT || 7000, () => console.log('Magic happens on port 7000'));
