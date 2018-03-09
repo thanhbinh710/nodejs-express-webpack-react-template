@@ -47,7 +47,7 @@ class Login extends Component {
 		  	})
 		  	.catch(error => {
 		  		console.log("Unexpected error", error);
-		  		this.props.authenticate(null)
+		  		this.props.authenticate('')
 		    	this.setState({loginError: 'Invalid username/password'})
 		  	});
 	}

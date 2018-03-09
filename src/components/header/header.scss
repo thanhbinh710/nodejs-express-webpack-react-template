@@ -1,4 +1,7 @@
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     background: #061C3F;
     margin-bottom: 30px;
@@ -9,6 +12,15 @@
 
         .emphasis {
             color: #fff;
+        }
+    }
+
+    .logout {
+        color: #fff;
+
+        &:hover {
+            color: lightblue;
+            cursor: pointer;
         }
     }
 }
