@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './');
 const sourcePathNode_Module = path.join(__dirname, './node_modules');
-const sourcePathPublic = path.join(__dirname, './public/src');
+const sourcePathPublic = path.join(__dirname, './src');
 
 const VENDOR_LIBS = [
     'react', 'react-dom', 'react-router', 'react-router-dom', 'axios',
@@ -49,11 +49,21 @@ module.exports = {
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
         },
-        historyApiFallback: true 
+        historyApiFallback: true,
+        proxy: {
+            "/api/*":{
+                target:"http://localhost:7000/",
+                secure:"true"
+            }
+        }
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
+            mangle: false
         }),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest']

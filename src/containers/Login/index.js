@@ -37,8 +37,7 @@ class Login extends Component {
 	onSubmit(values) {
 		console.log("submitted values", values)
 
-		axios.post("http://localhost:7000/api/users/login", values)
-		// axios.post("/api/users/login", values)
+		axios.post("/api/users/login", values)
 			.then(response => {
 			    if(response.status === 200) {
 					this.props.authenticate(response.data.token)

@@ -10,30 +10,25 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'production') {
-    const webpackMiddleware = require('webpack-dev-middleware');
-    const webpack = require('webpack');
-    const webpackConfig = require('./webpack.config.js');
-    app.use(webpackMiddleware(webpack(webpackConfig)));
+app.use(function(req, res, next) {
+    console.log(req.method, req.url);
+    if (!res.getHeader('Cache-Control')) res.setHeader('Cache-Control', 'public, max-age=' + (60*60*2 ));
+    if (process.env.NODE_ENV == "production" && req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    next();
+});
 
-    // allow CORS when we run npm run dev
-    app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        next();
-    });
-} else {
-}
-    app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/api', routes);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
-app.use('/api', routes);
-
-
-app.listen(process.env.PORT || 7000, () => console.log('Magic happens on port 7000'));
+app.set('port', (process.env.PORT || 7000));
+var server = app.listen(app.get('port'), function() {
+    var port = server.address().port;
+    console.log('Magic happens on port ' + port);
+});
 
